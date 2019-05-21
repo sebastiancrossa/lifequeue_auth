@@ -5,16 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import theme from './utils/theme';
 import GlobalStyles from './utils/global';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <>
-      <App />
-      <GlobalStyles />
-    </>
-  </ThemeProvider>,
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <>
+        <App />
+        <GlobalStyles />
+      </>
+    </ThemeProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
