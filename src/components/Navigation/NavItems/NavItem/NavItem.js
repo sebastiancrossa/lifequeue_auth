@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Li = styled.li`
@@ -6,7 +7,7 @@ const Li = styled.li`
   height: 100%;
 `;
 
-const A = styled.a`
+const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
 
@@ -30,7 +31,7 @@ const A = styled.a`
 const NavItem = ({ link, children }) => {
   return (
     <Li>
-      <A href={link}>{children}</A>
+      <StyledNavLink to={link}>{children}</StyledNavLink>
     </Li>
   );
 };
