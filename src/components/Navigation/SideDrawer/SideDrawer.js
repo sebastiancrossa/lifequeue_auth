@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // Component Imports
@@ -30,16 +30,20 @@ const FixedWrapper = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  height: 100%;
+  width: 100%;
   justify-content: space-between;
   padding-top: 0.4rem;
 `;
 
 const SideDrawer = () => {
+  const [isOpened, setIsOpened] = useState(false);
+
   return (
     <FixedWrapper>
       <Wrapper>
         <Logo />
-        <Hamburger opened />
+        <Hamburger opened={isOpened} clicked={() => setIsOpened(!isOpened)} />
       </Wrapper>
     </FixedWrapper>
   );
