@@ -18,9 +18,8 @@ const NavItems = () => {
   return (
     <Nav>
       <Ul>
-        <NavItem>Home</NavItem>
-        <NavItem>About</NavItem>
-        <NavItem>Help</NavItem>
+        <NavItem link='/'>Home</NavItem>
+        <NavItem link='todos'>Todos</NavItem>
       </Ul>
     </Nav>
   );

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 // Component Imports
 import Logo from '../../Logo/Logo';
-import Container from '../../../hoc/layout/elements/Container';
 import NavItems from '../NavItems/NavItems';
+import Hamburger from './Hamburger/Hamburger';
 
 const FixedWrapper = styled.div`
   position: fixed;
@@ -21,8 +21,10 @@ const FixedWrapper = styled.div`
   width: 100%;
   height: 6rem;
 
+  display: none;
+
   @media ${props => props.theme.mediaQueries.small} {
-    display: none;
+    display: flex;
   }
 `;
 
@@ -32,17 +34,15 @@ const Wrapper = styled.div`
   padding-top: 0.4rem;
 `;
 
-const Navbar = () => {
+const SideDrawer = () => {
   return (
     <FixedWrapper>
-      <Container>
-        <Wrapper>
-          <Logo />
-          <NavItems />
-        </Wrapper>
-      </Container>
+      <Wrapper>
+        <Logo />
+        <Hamburger opened />
+      </Wrapper>
     </FixedWrapper>
   );
 };
 
-export default Navbar;
+export default SideDrawer;
