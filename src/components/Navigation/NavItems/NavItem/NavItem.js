@@ -12,26 +12,45 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
 
   text-transform: uppercase;
-  border-bottom: 2px solid transparent;
+  border-bottom: ${props =>
+    props.mobile ? '1px solid transparent' : '2px solid transparent'};
 
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--color-white);
 
-  padding: 1rem;
-  margin: 0 1rem;
+  padding: ${props => (props.mobile ? '0.5rem 1rem' : '1rem')};
+  margin: ${props => (props.mobile ? '1rem 0' : '0 1rem')};
 
   transition: all 0.2s;
 
   &:hover {
-    border-bottom: 2px soid var(--color-white);
+    border-bottom: ${props =>
+      props.mobile
+        ? '1px solid var(--color-white)'
+        : '2px solid var(--color-white)'};
+  }
+
+  &.active {
+    border-bottom: ${props =>
+      props.mobile
+        ? '1px solid var(--color-white)'
+        : '2px solid var(--color-white)'};
   }
 `;
 
-const NavItem = ({ link, children }) => {
+const NavItem = ({ link, children, mobile, clicked }) => {
   return (
     <Li>
-      <StyledNavLink to={link}>{children}</StyledNavLink>
+      <StyledNavLink
+        onClick={clicked}
+        exact
+        activeClassName='active'
+        mobile={mobile}
+        to={link}
+      >
+        {children}
+      </StyledNavLink>
     </Li>
   );
 };

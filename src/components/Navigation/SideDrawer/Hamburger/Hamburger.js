@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledHamburger = styled.div`
-  width: 60px;
-  height: 45px;
+  width: 30px;
+  height: 22.5px;
   position: relative;
-  margin: 100px auto;
+  padding: 1rem;
+  margin-top: 1.5rem;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -19,9 +20,9 @@ const StyledHamburger = styled.div`
   & span {
     display: block;
     position: absolute;
-    height: 9px;
+    height: 4.5px;
     width: 100%;
-    background: #415d5c;
+    background: var(--color-white);
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -35,7 +36,7 @@ const StyledHamburger = styled.div`
     transition: 0.25s ease-in-out;
 
     &:nth-child(1) {
-      top: ${props => (props.opened ? '18px' : '0px')};
+      top: ${props => (props.opened ? '9px' : '0px')};
       width: ${props => (props.opened ? '0%' : '100%')};
       left: ${props => (props.opened ? '50%' : '0px')};
     }
@@ -56,11 +57,11 @@ const StyledHamburger = styled.div`
 
     &:nth-child(2),
     &:nth-child(3) {
-      top: 18px;
+      top: 9px;
     }
 
     &:nth-child(4) {
-      top: ${props => (props.opened ? '18px' : '36px')};
+      top: ${props => (props.opened ? '9px' : '18px')};
       width: ${props => (props.opened ? '0%' : '100%')};
       left: ${props => (props.opened ? '50%' : '0px')};
     }
@@ -73,9 +74,9 @@ const StyledHamburger = styled.div`
   }
 `;
 
-const Hamburger = ({ opened }) => {
+const Hamburger = ({ opened, clicked }) => {
   return (
-    <StyledHamburger opened>
+    <StyledHamburger onClick={clicked} opened={opened}>
       <span />
       <span />
       <span />
