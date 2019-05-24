@@ -10,16 +10,21 @@ const Nav = styled.nav`
 
 const Ul = styled.ul`
   display: flex;
+  flex-direction: ${props => (props.mobile ? 'column' : 'row')};
   align-items: center;
   height: 100%;
 `;
 
-const NavItems = () => {
+const NavItems = ({ mobile, clicked }) => {
   return (
     <Nav>
-      <Ul>
-        <NavItem link='/'>Home</NavItem>
-        <NavItem link='todos'>Todos</NavItem>
+      <Ul mobile={mobile}>
+        <NavItem clicked={clicked} mobile={mobile} link='/'>
+          Home
+        </NavItem>
+        <NavItem clicked={clicked} mobile={mobile} link='todos'>
+          Todos
+        </NavItem>
       </Ul>
     </Nav>
   );
