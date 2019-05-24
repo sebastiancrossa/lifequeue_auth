@@ -22,7 +22,7 @@ const NavItems = ({ mobile, clicked }) => {
         <NavItem clicked={clicked} mobile={mobile} link='/'>
           Home
         </NavItem>
-        <NavItem clicked={clicked} mobile={mobile} link='todos'>
+        <NavItem clicked={clicked} mobile={mobile} link='/todos'>
           Todos
         </NavItem>
       </Ul>
