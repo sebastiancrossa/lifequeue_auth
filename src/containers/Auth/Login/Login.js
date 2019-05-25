@@ -1,6 +1,11 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import { FormWrapper, StyledForm } from '../../../hoc/layout/elements';
+
+// * Component imports
+import Input from '../../../components/UI/Forms/Input/Input';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -11,29 +16,40 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   return (
-    <div style={{ padding: '3rem' }}>
-      <Formik
-        initialValues={{
-          email: '',
-          password: ''
-        }}
-        validationSchema={LoginSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
-        }}
-      >
-        {({ isSubmitting, isValid }) => (
-          <Form>
-            <Field type='email' name='email' placeholder='Email...' />
-            <ErrorMessage name='email' />
+    <Formik
+      initialValues={{
+        email: '',
+        password: ''
+      }}
+      validationSchema={LoginSchema}
+      onSubmit={(values, { setSubmitting }) => {
+        // callback function
+        console.log(values);
+      }}
+    >
+      {({ isSubmitting, isValid }) => (
+        <FormWrapper>
+          <h1>Login</h1>
+          <StyledForm>
+            <Field
+              type='email'
+              name='email'
+              placeholder='Email...'
+              component={Input}
+            />
 
-            <Field type='password' name='password' placeholder='Password...' />
-            <ErrorMessage name='password' />
+            <Field
+              type='password'
+              name='password'
+              placeholder='Password...'
+              component={Input}
+            />
+
             <button type='submit'>Login</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          </StyledForm>
+        </FormWrapper>
+      )}
+    </Formik>
   );
 };
 
