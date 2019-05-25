@@ -6,6 +6,8 @@ import { FormWrapper, StyledForm } from '../../../hoc/layout/elements';
 
 // * Component imports
 import Input from '../../../components/UI/Forms/Input/Input';
+import Button from '../../../components/UI/Forms/Button/Button';
+import Heading from '../../../components/UI/Headings/Heading';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -29,7 +31,12 @@ const Login = () => {
     >
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
-          <h1>Login</h1>
+          <Heading noMargin size='h1' color='white'>
+            Login into your account
+          </Heading>
+          <Heading bold size='h4' color='white'>
+            Fill in your details to log into your account
+          </Heading>
           <StyledForm>
             <Field
               type='email'
@@ -45,7 +52,9 @@ const Login = () => {
               component={Input}
             />
 
-            <button type='submit'>Login</button>
+            <Button disabled={!isValid} type='submit'>
+              Login
+            </Button>
           </StyledForm>
         </FormWrapper>
       )}
