@@ -15,7 +15,7 @@ const FixedWrapper = styled.div`
   top: 0;
   left: 0;
 
-  background-color: var(--color-main);
+  background-color: var(--color-mainDark);
   padding: 0rem 2rem;
 
   width: 100%;

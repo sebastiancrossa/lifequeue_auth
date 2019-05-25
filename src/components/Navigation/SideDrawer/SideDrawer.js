@@ -54,6 +54,12 @@ const Menu = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+
+  display: none;
+
+  @media ${props => props.theme.mediaQueries.small} {
+    display: flex;
+  }
 `;
 
 const SideDrawer = () => {
