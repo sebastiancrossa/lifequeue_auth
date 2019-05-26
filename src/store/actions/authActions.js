@@ -11,6 +11,14 @@ export const signUp = data => async (
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
     console.log(res);
+
+    await firestore
+      .collection('users')
+      .doc(res.user.uid)
+      .set({
+        firstName: data.firstName,
+        lastName: data.lastName
+      });
   } catch (err) {
     console.log(err);
   }
