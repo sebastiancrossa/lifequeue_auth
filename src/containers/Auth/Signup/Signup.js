@@ -2,6 +2,9 @@ import React from 'react';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
+
 import { FormWrapper, StyledForm } from '../../../hoc/layout/elements';
 
 // * Component imports
@@ -21,13 +24,15 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email') // Error message that will be passed
     .required('Email is required'),
-  password: Yup.string().required('Password required'),
+  password: Yup.string()
+    .required('Password required')
+    .min(8, 'Password too short'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], `Password doesn't match`)
     .required('You need to confirm your password')
 });
 
-const Signup = () => {
+const Signup = ({ signUp }) => {
   return (
     <Formik
       initialValues={{
@@ -41,6 +46,8 @@ const Signup = () => {
       onSubmit={(values, { setSubmitting }) => {
         // callback function
         console.log(values);
+        signUp(values);
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -95,4 +102,13 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  signUp: actions.signUp
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);
