@@ -13,7 +13,7 @@ export const FormWrapper = styled.div`
   max-width: 50rem;
 
   margin: 0 auto;
-  padding: 4rem 8rem;
+  padding: 6rem 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;

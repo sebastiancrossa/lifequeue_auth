@@ -11,6 +11,7 @@ import { FormWrapper, StyledForm } from '../../../hoc/layout/elements';
 import Input from '../../../components/UI/Forms/Input/Input';
 import Button from '../../../components/UI/Forms/Button/Button';
 import Heading from '../../../components/UI/Headings/Heading';
+import Message from '../../../components/UI/Message/Message';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -32,7 +33,7 @@ const SignupSchema = Yup.object().shape({
     .required('You need to confirm your password')
 });
 
-const Signup = ({ signUp, loading }) => {
+const Signup = ({ signUp, loading, error }) => {
   return (
     <Formik
       initialValues={{
@@ -99,6 +100,10 @@ const Signup = ({ signUp, loading }) => {
             >
               Sign up
             </Button>
+
+            <Message error show={error}>
+              {error}
+            </Message>
           </StyledForm>
         </FormWrapper>
       )}
@@ -107,7 +112,8 @@ const Signup = ({ signUp, loading }) => {
 };
 
 const mapStateToProps = ({ auth }) => ({
-  loading: auth.loading
+  loading: auth.loading, // "auth" is from our store
+  error: auth.error
 }); // mapping to our prop
 
 const mapDispatchToProps = {
