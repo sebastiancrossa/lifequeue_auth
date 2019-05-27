@@ -6,6 +6,7 @@ export const signUp = data => async (
   const firebase = getFirebase();
   const firestore = getFirestore();
 
+  dispatch({ type: 'AUTH_START' });
   try {
     const res = await firebase
       .auth()
@@ -22,4 +23,6 @@ export const signUp = data => async (
   } catch (err) {
     console.log(err);
   }
+
+  dispatch({ type: 'AUTH_END' });
 }; // function that returns another function
