@@ -2,12 +2,16 @@ import React from 'react';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
+
 import { FormWrapper, StyledForm } from '../../../hoc/layout/elements';
 
 // * Component imports
 import Input from '../../../components/UI/Forms/Input/Input';
 import Button from '../../../components/UI/Forms/Button/Button';
 import Heading from '../../../components/UI/Headings/Heading';
+import Message from '../../../components/UI/Message/Message';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -21,13 +25,15 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email') // Error message that will be passed
     .required('Email is required'),
-  password: Yup.string().required('Password required'),
+  password: Yup.string()
+    .required('Password required')
+    .min(8, 'Password too short'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], `Password doesn't match`)
     .required('You need to confirm your password')
 });
 
-const Signup = () => {
+const Signup = ({ signUp, loading, error }) => {
   return (
     <Formik
       initialValues={{
@@ -38,9 +44,11 @@ const Signup = () => {
         confirmPassword: ''
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         // callback function
         console.log(values);
+        await signUp(values);
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -85,9 +93,17 @@ const Signup = () => {
               component={Input}
             />
 
-            <Button disabled={!isValid} type='submit'>
+            <Button
+              disabled={!isValid || isSubmitting}
+              loading={loading ? 'Signing up...' : null}
+              type='submit'
+            >
               Sign up
             </Button>
+
+            <Message error show={error}>
+              {error}
+            </Message>
           </StyledForm>
         </FormWrapper>
       )}
@@ -95,4 +111,16 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = ({ auth }) => ({
+  loading: auth.loading, // "auth" is from our store
+  error: auth.error
+}); // mapping to our prop
+
+const mapDispatchToProps = {
+  signUp: actions.signUp
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);
