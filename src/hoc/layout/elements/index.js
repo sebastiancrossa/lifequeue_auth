@@ -26,6 +26,9 @@ export const FormWrapper = styled.div`
 
 export const StyledForm = styled(Form)`
   display: flex;
+  position: relative;
+  align-items: center;
+
   width: 100%;
   flex-direction: column;
 `;
