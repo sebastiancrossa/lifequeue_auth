@@ -8,6 +8,7 @@ import Layout from './hoc/layout/Layout';
 import Home from './containers/Home/Home';
 import Todos from './containers/Todos/Todos';
 import Login from './containers/Auth/Login/Login';
+import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import { AUTH_END } from './store/actions/actionTypes';
 
@@ -18,6 +19,7 @@ const App = ({ loggedIn }) => {
       <Switch>
         <Route exact path='/' component={withRouter(Home)} />
         <Route exact path='/todos' component={withRouter(Todos)} />
+        <Route exact path='/logout' component={withRouter(Logout)} />
 
         {/* Every route that doesn't match any of the above will redirect to home */}
         <Redirect to='/' />
