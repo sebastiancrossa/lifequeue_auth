@@ -9,7 +9,8 @@ import rootReducer from './reducers';
 // react-redux-firebase config
 const rrfConfig = {
   userProfile: 'users',
-  useFirestoreForProfile: true
+  useFirestoreForProfile: true,
+  attachAuthIsReady: true
 };
 
 const composeEnhancers =
