@@ -55,3 +55,8 @@ export const signOut = () => async (dispatch, getState, { getFirebase }) => {
     console.log(err);
   }
 };
+
+// Cleans up the messages stae
+export const clean = () => ({
+  type: actions.CLEAN_UP
+});

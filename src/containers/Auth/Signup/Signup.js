@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
@@ -39,7 +39,13 @@ const SignupSchema = Yup.object().shape({
     .required('You need to confirm your password')
 });
 
-const Signup = ({ signUp, loading, error }) => {
+const Signup = ({ signUp, loading, error, cleanUp }) => {
+  useEffect(() => {
+    return () => {
+      cleanUp();
+    };
+  }, [cleanUp]);
+
   return (
     <Formik
       initialValues={{
@@ -125,7 +131,8 @@ const mapStateToProps = ({ auth }) => ({
 }); // mapping to our prop
 
 const mapDispatchToProps = {
-  signUp: actions.signUp
+  signUp: actions.signUp,
+  cleanUp: actions.clean
 };
 
 export default connect(

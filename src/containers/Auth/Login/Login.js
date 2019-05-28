@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
@@ -27,7 +27,13 @@ const LoginSchema = Yup.object().shape({
     .min(8, 'Password is too short')
 });
 
-const Login = ({ login, loading, error }) => {
+const Login = ({ login, loading, error, cleanUp }) => {
+  useEffect(() => {
+    return () => {
+      cleanUp();
+    };
+  }, [cleanUp]);
+
   return (
     <Formik
       initialValues={{
@@ -90,7 +96,8 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const mapDispatchToProps = {
-  login: actions.signIn
+  login: actions.signIn,
+  cleanUp: actions.clean
 };
 
 export default connect(
