@@ -22,9 +22,6 @@ const NavItems = ({ mobile, clicked, loggedIn }) => {
     links = (
       <Ul mobile={mobile}>
         <NavItem clicked={clicked} mobile={mobile} link='/'>
-          Home
-        </NavItem>
-        <NavItem clicked={clicked} mobile={mobile} link='/todos'>
           Todos
         </NavItem>
         <NavItem clicked={clicked} mobile={mobile} link='/logout'>
@@ -35,12 +32,6 @@ const NavItems = ({ mobile, clicked, loggedIn }) => {
   } else {
     links = (
       <Ul mobile={mobile}>
-        <NavItem clicked={clicked} mobile={mobile} link='/'>
-          Home
-        </NavItem>
-        <NavItem clicked={clicked} mobile={mobile} link='/todos'>
-          Todos
-        </NavItem>
         <NavItem clicked={clicked} mobile={mobile} link='/login'>
           Login
         </NavItem>
