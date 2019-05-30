@@ -13,6 +13,9 @@ const P = styled.p`
   transform: translateY(${({ show }) => (show ? '30px' : '0px')});
 
   text-align: center;
+
+  position: relative;
+  bottom: ${({ error }) => (error ? '-3.5rem' : '0')};
 `;
 
 const Message = ({ children, error, success, show }) => {
