@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import styled from 'styled-components';
@@ -25,11 +25,18 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const VerifyEmail = ({ sendVerification, loading, error }) => {
+const VerifyEmail = ({ sendVerification, loading, error, cleanUp }) => {
+  // Cleans the error message when the verify screen mounts
+  useEffect(() => {
+    return () => {
+      cleanUp();
+    };
+  }, [cleanUp]);
+
   return (
     <FormWrapper>
       <Wrapper>
-        <Heading color='white' size='h1'>
+        <Heading noMargin color='white' size='h1'>
           Please verify your email.
         </Heading>
 
@@ -64,7 +71,8 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const mapDispatchToProps = {
-  sendVerification: actions.verifyEmail
+  sendVerification: actions.verifyEmail,
+  cleanUp: actions.clean
 };
 
 export default connect(

@@ -11,6 +11,7 @@ import Login from './containers/Auth/Login/Login';
 import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import VerifyEmail from './containers/Auth/VerifyEmail/VerifyEmail';
+import RecoverPassword from './containers/Auth/RecoverPassword/RecoverPassword';
 import { AUTH_END } from './store/actions/actionTypes';
 
 const App = ({ loggedIn, emailVerified }) => {
@@ -41,6 +42,7 @@ const App = ({ loggedIn, emailVerified }) => {
       <Switch>
         <Route exact path='/login' component={withRouter(Login)} />
         <Route exact path='/signup' component={withRouter(Signup)} />
+        <Route exact path='/recover' component={withRouter(RecoverPassword)} />
 
         {/* Every route that doesn't match any of the above will redirect to login */}
         <Redirect to='/login' />
