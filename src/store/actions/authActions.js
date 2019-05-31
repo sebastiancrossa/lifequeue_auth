@@ -82,3 +82,20 @@ export const verifyEmail = () => async (
     dispatch({ type: actions.VERIFY_FAIL, payload: err.message });
   }
 };
+
+// Email recovery actions
+export const recoverPassword = data => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const firebase = getFirebase();
+
+  dispatch({ type: actions.RECOVERY_START });
+  try {
+    await firebase.auth().sendPasswordResetEmail(data.email); // We are getting the email from the password recovery form input
+    dispatch({ type: actions.RECOVERY_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actions.RECOVERY_FAIL, payload: err.message });
+  }
+};
