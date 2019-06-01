@@ -31,8 +31,8 @@ const RecoverPassword = ({ sendPasswordRecovery, loading, error }) => {
       }}
       validationSchema={RecoverSchema}
       onSubmit={async (values, { setSubmitting }) => {
-        sendPasswordRecovery(values);
-        setSubmitting = false;
+        await sendPasswordRecovery(values);
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -52,7 +52,7 @@ const RecoverPassword = ({ sendPasswordRecovery, loading, error }) => {
               component={Input}
             />
             <Button
-              disabled={loading}
+              disabled={!isValid || isSubmitting}
               loading={loading ? 'Sending email' : null}
               type='submit'
             >
